@@ -5,23 +5,21 @@
       <h2>{{welcomeMessage}}</h2>
     </div>
     <div class="login-form-container">
-      <button @click="clickButton">按钮被点了{{clickCount}}下</button>
-      <input type="text" v-model="inputUsername" />
+      <div class="login-form">
+        <custom-input v-model="inputUsername" placeholder="请输入用户名"></custom-input>
+      </div>
       <div>{{inputUsername}}</div>
-      <input type="text" v-model="inputPassword"/>
-      <div>{{inputPassword}}</div>
     </div>
-    <copy-right></copy-right>
   </div>
 </template>
 
 <script lang="ts">
 import { Vue, Options } from 'vue-class-component'
-import CopyRight from '@/components/copy-right.vue'
+import CustomInput from '@/components/custom-field/input.vue'
 
 @Options({
   components: {
-    'copy-right': CopyRight
+    'custom-input': CustomInput
   }
 })
 export default class LoginPage extends Vue {
