@@ -32,9 +32,13 @@ export default defineComponent({
 </script>
 
 <style scoped lang="stylus">
+//@import "/src/assets/styles/variables.styl"
+
 #app-container
   width 100%
   height 100%
+
+  background-color background-color
 
   display flex
   flex-direction column
