@@ -25,6 +25,7 @@
 
 <script lang="ts">
 import { Vue, Options } from 'vue-class-component'
+import loginService from "../services/loginService";
 import CustomInput from '@/components/custom-field/input.vue'
 import CustomButton from '@/components/custom-field/button.vue'
 
@@ -52,24 +53,37 @@ export default class LoginPage extends Vue {
   }
 
   signUpHandler () {
-    this.errorMessageUsername = ''
-    this.errorMessagePassword = ''
+    const valid = this.validateInput()
+    if (valid) {
+      const res = loginService.signup(this.valueUsername, this.valuePassword)
+      alert(JSON.parse(res))
+    }
   }
 
   loginHandler () {
+    const valid = this.validateInput()
+    if (valid) {
+      const res = loginService.login(this.valueUsername, this.valuePassword)
+      alert(JSON.parse(res))
+    }
+  }
+
+  validateInput () {
     let valid = true
     if (this.valueUsername.length === 0) {
       this.errorMessageUsername = '请输入账户'
       valid = false
+    } else {
+      this.errorMessageUsername = ''
     }
     if (this.valuePassword.length === 0) {
       this.errorMessagePassword = '请输入密码'
       valid = false
+    } else {
+      this.errorMessagePassword = ''
     }
 
-    if (valid) {
-      alert('about to login to the system')
-    }
+    return valid
   }
 }
 </script>
